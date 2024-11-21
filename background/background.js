@@ -26,6 +26,37 @@ chrome.action.onClicked.addListener(() => {
     });
 });
 
+// Create context menu
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.contextMenus.create({
+        id: "helloWorld",
+        title: "Print Hello World",
+        contexts: ["all"]
+    });
+    chrome.contextMenus.create({
+        id: "markForScraping",
+        title: "Mark for Scraping",
+        contexts: ["all"]
+    });
+});
+
+// Handle context menu clicks
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === "helloWorld") {
+        chrome.tabs.sendMessage(tab.id, { action: "printHelloWorld" });
+    } else if (info.menuItemId === "markForScraping") {
+        chrome.tabs.sendMessage(tab.id, { 
+            action: "markForScraping",
+            targetElementInfo: {
+                tagName: info.targetElementTag,
+                src: info.srcUrl,
+                link: info.linkUrl,
+                text: info.selectionText
+            }
+        });
+    }
+});
+
 // Listen for window updates to handle window state
 chrome.windows.onFocusChanged.addListener((windowId) => {
     if (windowId !== chrome.windows.WINDOW_ID_NONE) {

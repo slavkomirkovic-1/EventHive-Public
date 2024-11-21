@@ -19,6 +19,9 @@
     "background": {
         "service_worker": "background/background.js"
     },
+    "chrome_url_overrides": {
+        "newtab": "pages/newtab.html"
+    },
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
@@ -28,6 +31,7 @@
     ],
     "permissions": [
         "storage",
+        "contextMenus",
         "activeTab",
         "scripting",
         "tabs",
@@ -48,7 +52,10 @@
                 "popup/event-details.html",
                 "popup/popup.html",
                 "popup/popup.js",
-                "popup/popup.css"
+                "popup/popup.css",
+                "content/xpath.js",
+                "content/content.js",
+                "pages/*"
             ],
             "matches": ["<all_urls>"]
         }
