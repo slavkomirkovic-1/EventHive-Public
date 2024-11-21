@@ -400,11 +400,6 @@ storageInterface.get("isRecording", (result) => {
 
 // Listen for messages from background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    if (message.action === "printHelloWorld") {
-        console.log("Hello World!");
-        // You can also show an alert or modify the page if you prefer
-        alert("Hello World!");
-    }
     if (message.action === "markForScraping") {
         // Get the element that was right-clicked
         const element = document.elementFromPoint(lastClickX, lastClickY);
