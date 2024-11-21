@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #0d1117;
+            color: #e0e0e0;
+        }
+        .event-details {
+            border: 1px solid #30363d;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: #161b22;
+        }
+        .property {
+            display: flex;
+            margin: 8px 0;
+            padding: 10px;
+            background: #21262d;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            align-items: flex-start;
+        }
+        .key {
+            font-weight: bold;
+            min-width: 150px;
+            color: #58a6ff;
+            padding-right: 15px;
+        }
+        .value {
+            flex: 1;
+            word-break: break-word;
+            color: #c9d1d9;
+            text-align: left;
+            font-family: 'Consolas', monospace;
+            white-space: pre-wrap;
+        }
+        h2 {
+            color: #58a6ff;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 10px;
+        }
+        
+        *::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: #161b22;
+            border-radius: var(--border-radius);
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: var(--border-radius);
+            border: 2px solid #161b22;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+            background: #40464d;
+        }
+    </style>
+</head>
+<body>
+    <h2>Event Details</h2>
+    <div id="eventDetails" class="event-details">
+        <!-- Event details will be populated here -->
+    </div>
+    <script src="event-details.js"></script>
+</body>
+</html>

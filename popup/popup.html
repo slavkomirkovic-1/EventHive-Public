@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>EventHive</title>
+        <link rel="stylesheet" href="popup.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="controls">
+                <h3>EventHive</h3>
+                <button class="btn" id="record">Record</button>
+                <button class="btn" id="play">Play</button>
+                <button class="btn" id="clear">Clear</button>
+                <button class="btn" id="save">Save</button>
+                <button class="btn" id="load">Load</button>
+            </div>
+            <div class="listbox">
+                <select multiple id="itemList">
+                    <!-- Events will be added here dynamically -->
+                </select>
+            </div>
+        </div>
+        <script src="popup.js"></script>
+    </body>
+</html>

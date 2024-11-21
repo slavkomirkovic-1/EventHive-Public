@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Save Events</title>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <style>
+        :root {
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --border-radius: 8px;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .save-container {
+            padding: clamp(var(--spacing-md), 3vw, var(--spacing-lg));
+            width: 100%;
+            height: 100%;
+            max-width: min(90vw, 1200px);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        h2 {
+            margin: 0;
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid #30363d;
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+        }
+
+        .event-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: var(--spacing-md);
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: var(--border-radius);
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .event-item {
+            display: flex;
+            align-items: center;
+            padding: clamp(var(--spacing-sm), 2vw, var(--spacing-md));
+            background: #21262d;
+            border-radius: var(--border-radius);
+            transition: all 0.2s ease;
+            min-height: 44px;
+        }
+
+        .event-item:hover {
+            background: #2f363d;
+            transform: translateY(-1px);
+        }
+
+        .event-item input[type="checkbox"] {
+            margin-right: var(--spacing-md);
+            cursor: pointer;
+            min-width: 18px;
+            min-height: 18px;
+        }
+
+        .event-item label {
+            flex: 1;
+            cursor: pointer;
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding-right: var(--spacing-sm);
+        }
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: clamp(var(--spacing-sm), 2vw, var(--spacing-md));
+            padding: var(--spacing-md) 0;
+            margin-top: auto;
+        }
+
+        .select-all {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-sm) 0;
+        }
+
+        .select-all input[type="checkbox"] {
+            min-width: 18px;
+            min-height: 18px;
+            cursor: pointer;
+        }
+
+        .select-all label {
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+            cursor: pointer;
+        }
+
+        #downloadLink {
+            display: none;
+        }
+
+        *::-webkit-scrollbar {
+            width: clamp(8px, 1.5vw, 12px);
+            height: clamp(8px, 1.5vw, 12px);
+        }
+
+        *::-webkit-scrollbar-track {
+            background: #161b22;
+            border-radius: var(--border-radius);
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background: #30363d;
+            border-radius: var(--border-radius);
+            border: 2px solid #161b22;
+        }
+
+        *::-webkit-scrollbar-thumb:hover {
+            background: #40464d;
+        }
+
+        .btn {
+            min-width: clamp(100px, 15vw, 150px);
+            height: clamp(36px, 5vh, 44px);
+            font-size: clamp(0.875rem, 1.5vw, 1rem);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .save-container {
+                padding: var(--spacing-sm);
+            }
+
+            .actions {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+
+            .btn {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+
+        @media (max-height: 500px) {
+            .save-container {
+                gap: var(--spacing-sm);
+            }
+
+            h2 {
+                padding-bottom: var(--spacing-sm);
+            }
+
+            .event-item {
+                min-height: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="save-container">
+        <h2>Save Events</h2>
+        <div class="select-all">
+            <input type="checkbox" id="selectAll">
+            <label for="selectAll">Select All</label>
+        </div>
+        <div class="event-list" id="eventList">
+            <!-- Events will be populated here -->
+        </div>
+        <div class="actions">
+            <button class="btn" id="cancelBtn">Cancel</button>
+            <button class="btn" id="saveBtn">Save Selected</button>
+        </div>
+        <a id="downloadLink"></a>
+    </div>
+    <script src="save-dialog.js"></script>
+</body>
+</html>
