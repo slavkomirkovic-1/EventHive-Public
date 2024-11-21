@@ -201,6 +201,30 @@ storageInterface.onChanged.addListener((changes, areaName) => {
     if (changes.isRecording || changes.runEvents) {
         updateStates();
     }
+    
+    // Add real-time event list updates
+    if (changes.events) {
+        const newEvents = changes.events.newValue || [];
+        const oldEvents = changes.events.oldValue || [];
+        
+        // If we have new events
+        if (newEvents.length > oldEvents.length) {
+            const itemList = document.getElementById("itemList");
+            
+            // Get only the newly added events
+            const newEventItems = newEvents.slice(oldEvents.length);
+            
+            // Add new events with animation
+            newEventItems.forEach((event, index) => {
+                const convertedEvent = JSON.parse(event);
+                const option = document.createElement("option");
+                option.id = convertedEvent.id;
+                option.textContent = `${convertedEvent.id}: ${convertedEvent.type}`;
+                option.style.animation = 'itemAppear 0.3s ease-out';
+                itemList.appendChild(option);
+            });
+        }
+    }
 });
 
 // Event listener for clicking on events to show details
